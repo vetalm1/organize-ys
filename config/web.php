@@ -8,15 +8,14 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language'=> 'ru',
-    //'name'=>'Organize YourSelf', //имя в хэдере
+    'name'=>'Organize YourSelf', //имя в хэдере
     //'layout' => 'organize-ys', //переопределение шаблона
-    //'defaultRoute' => 'home/index', //дефолтный путь при стартовом урл
+    'defaultRoute' => 'register/add-company', //дефолтный путь при стартовом урл
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-        //'breadcrumbs'=>['class' => \app\components\BreadCrumbs::class], // компонент хлебные крошки
         'request' => [
             'cookieValidationKey' => 'RFdIbH5A80DE7pedlK93NYbsTVnyPjs2',
             'baseUrl' => '',
@@ -25,8 +24,9 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Company',
             'enableAutoLogin' => true,
+            'loginUrl' => '/auth/login' // маршрут для аутентификации
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
