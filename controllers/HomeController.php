@@ -6,11 +6,12 @@ namespace app\controllers;
 
 use app\models\Company;
 use app\models\Unit;
+use yii\web\HttpException;
 
 class HomeController extends BaseController
 {
 
-    public function actionIndex()
+    public function actionIndex($id=null)
     {
 
         $model = new Unit();
@@ -22,7 +23,22 @@ class HomeController extends BaseController
             }
         }
         $list=Company::find()->where(['id' => \Yii::$app->user->identity->id])->all();
-        return $this->render('index', compact('list', 'model' ));
+
+        if ($id!=null) {
+            $unit = Unit::findOne($id);
+            if ($unit->company_id != \Yii::$app->user->identity->id) {
+                throw new  HttpException(403, 'Ошибка доступа');
+            }
+        } else {
+            $company = Unit::find()->where(['company_id'=>\Yii::$app->user->identity->id])->asArray()->all();
+            $id = $company[0]['id'];
+        }
+
+        $month = date('n', time());
+        $year = date('Y', time());
+        $calendar = \Yii::$app->calendar->generateCalendar($month, $year, $id);
+
+        return $this->render('index', compact('list', 'model', 'calendar'));
 
     }
 

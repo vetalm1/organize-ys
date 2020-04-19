@@ -40,7 +40,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Личный кабинет', 'url' => ['/home/index']],
-            ['label' => 'Регистрация', 'url' => ['/register/add-company']],
+            ['label' => 'Регистрация', 'url' => ['/check-in/add-company']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Авторизация', 'url' => ['/auth/login']]

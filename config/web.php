@@ -8,14 +8,15 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language'=> 'ru',
-    'name'=>'Organize YourSelf', //имя в хэдере
-    //'layout' => 'organize-ys', //переопределение шаблона
-    'defaultRoute' => 'register/add-company', //дефолтный путь при стартовом урл
+    'name'=>'Organize YourSelf',
+    //'layout' => 'organize-ys', // шаблон
+    'defaultRoute' => 'check-in/add-company', //дефолтный путь при стартовом урл
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'calendar'=>['class'=>\app\components\CalendarComponent::class ],
         'request' => [
             'cookieValidationKey' => 'RFdIbH5A80DE7pedlK93NYbsTVnyPjs2',
             'baseUrl' => '',

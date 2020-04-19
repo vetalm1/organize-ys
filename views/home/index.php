@@ -20,6 +20,7 @@ use yii\widgets\ActiveForm; ?>
             <a href="<?= Url::to(['unit/view', 'id' => $unit->id]) ?>">
                 <h3 class="btn btn-success"> <?= $unit->name ?> </h3>
             </a>
+            <a href="<?= Url::to(['home/index', 'id' => $unit->id]) ?>"><h3 class="btn btn-default" > # </h3> </a>
         <?php endforeach?>
 
 
@@ -42,6 +43,36 @@ use yii\widgets\ActiveForm; ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="calendar-wrap">
+            <div class="calendar-weekdays">Пн.</div>
+            <div class="calendar-weekdays">Вт.</div>
+            <div class="calendar-weekdays">Ср.</div>
+            <div class="calendar-weekdays">Чт.</div>
+            <div class="calendar-weekdays">Пт.</div>
+            <div class="calendar-weekdays">Сб.</div>
+            <div class="calendar-weekdays">Вс.</div>
+
+            <?php foreach ($calendar as $day) : ?>
+                <div class="calendarItem <?=$day['workDay']?> <?=$day['anotherMonth']?> <?=$day['activity']?> ">
+                    <a href="#">
+                        <?=$day['dayNum']?>
+                    </a>
+
+                    <?php if (!empty($day['titleAndId'])) { $i=1;
+                        foreach ($day['titleAndId'] as $titleAndId){
+                            echo '<a href="#" class="calendarItem-activities">'.'<br></a>';
+                            if (++$i>3){ echo "..."; break;}
+                        }
+                    } ?>
+                </div>
+            <?php endforeach ?>
 
         </div>
     </div>

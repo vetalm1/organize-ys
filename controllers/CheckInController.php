@@ -7,7 +7,7 @@ namespace app\controllers;
 use app\models\Company;
 use yii\web\Controller;
 
-class RegisterController extends Controller
+class CheckInController extends Controller
 {
 
     public function actionAddCompany()
