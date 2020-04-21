@@ -1,4 +1,11 @@
 
+$(function(){
+    // инициализации подсказок для всех элементов на странице, имеющих атрибут data-toggle="tooltip"
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+
+
 $('.add-to-base').on('click', function () {
     let key = $(this).data('key');
     let startTime = '.input-start'+key;

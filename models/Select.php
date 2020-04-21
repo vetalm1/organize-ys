@@ -11,6 +11,7 @@ class Select extends Model
 
     public $id;
     public $date;
+    public $unitName;
     public $workTime = '09:00-18:00';
     public $pause = '5';
     public $period = '60';

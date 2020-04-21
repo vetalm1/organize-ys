@@ -20,12 +20,12 @@ use yii\widgets\ActiveForm; ?>
             <a href="<?= Url::to(['unit/view', 'id' => $unit->id]) ?>">
                 <h3 class="btn btn-success"> <?= $unit->name ?> </h3>
             </a>
-            <a href="<?= Url::to(['home/index', 'id' => $unit->id]) ?>"><h3 class="btn btn-default" > # </h3> </a>
+            <a href="<?= Url::to(['home/index', 'id' => $unit->id]) ?>"><h3 class="btn btn-default glyphicon glyphicon-calendar" ></h3> </a>
         <?php endforeach?>
 
 
         <div class="form-inline ">
-                <H3 class="">Добавить Юнит(подразделение/)</H3>
+                <H3 class="">Добавить Юнит(подразделение)</H3>
 
                 <?php $form = ActiveForm::begin([
                     'fieldConfig' => ['labelOptions' => ['class' => 'sr-only'],],
@@ -48,7 +48,16 @@ use yii\widgets\ActiveForm; ?>
     </div>
 </div>
 
-<div class="row">
+<br>
+<p class="panel panel-default "></p>
+<?php foreach($units as $unit):?>
+    <p class="bold text-warning">
+        <?= ($unit->id==$id) ? $unit->name : '' ?>
+    </p>
+
+<?php endforeach?>
+
+<div class="row ">
     <div class="col-md-3">
         <div class="calendar-wrap">
             <div class="calendar-weekdays">Пн.</div>

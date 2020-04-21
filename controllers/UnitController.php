@@ -30,29 +30,37 @@ class UnitController extends BaseController
 
         $data = Register::find()->where(['unit_id'=>$id])->all();
 
-        return $this->render('view', compact('data', 'model', 'unit'));
+        $month = date('n', time());
+        $year = date('Y', time());
+        $calendar = \Yii::$app->calendar->generateCalendar($month, $year, $id);
+
+
+        return $this->render('view', compact('data', 'model', 'unit', 'calendar'));
     }
 
     public function actionAddDay()
     {
         if (\Yii::$app->request->isPost) {
-            $model = new Unit_date();
+            $model = new Register();
             $model->load(\Yii::$app->request->post());
             $session = \Yii::$app->session;
             $model->unit_id = $session['currentUnit'];
+            $model->addDate();
             $model->save();
-            $data = Unit_date::find()->where(['unit_id'=>$session['currentUnit']])->all();
-            return $this->render('view', compact('data', 'model' , 'unit'));
+            $data = Register::find()->where(['unit_id'=>$session['currentUnit']])->all();
+
+            return $this->render('view', compact('data', 'model' , 'unit', 'calendar'));
         }
     }
 
-    public function actionSelect($date=null)
+    public function actionSelect($date=null, $unit_name=null)
     {
         $model = new Select();
         $session = \Yii::$app->session;
         $date ? $session['date'] = $date : false;
         $model->id = $session['currentUnit'];
         $model->date = $session['date'];
+        $model->unitName = $unit_name;
 
         if (\Yii::$app->request->isPost) {
             $model->load(\Yii::$app->request->post());

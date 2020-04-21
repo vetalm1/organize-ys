@@ -38,7 +38,7 @@ class HomeController extends BaseController
         $year = date('Y', time());
         $calendar = \Yii::$app->calendar->generateCalendar($month, $year, $id);
 
-        return $this->render('index', compact('list', 'model', 'calendar'));
+        return $this->render('index', compact('list', 'model', 'calendar', 'id'));
 
     }
 

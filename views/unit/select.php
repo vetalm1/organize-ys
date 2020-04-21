@@ -1,8 +1,13 @@
 <?php
 /* @var $this \yii\web\View */
+/* @var $model app\models\Select */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
+$this->params['breadcrumbs'][] = ['label' => $model->unitName, 'url' => ['view', 'id'=>$model->id]];
+$this->params['breadcrumbs'][] = 'Генерация списка на день';
+
 ?>
 
 
@@ -45,7 +50,6 @@ use yii\widgets\ActiveForm;
     'name'  => 'add',
 ]) ?>
 
-<br><br> <a href="#" class="btn btn-success">Произвольный выбор</a>
 <?php ActiveForm::end();  /* @var $this \yii\web\View */  ?>
 
     </div>
