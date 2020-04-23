@@ -11,7 +11,17 @@ use yii\web\HttpException;
 class HomeController extends BaseController
 {
 
-    public function actionIndex($id=null)
+    public function actionHomeIndex()
+    {
+
+        $freeUnits = Unit::find()->where(['busy'=>1])->all();
+
+
+        return $this->render('index', compact('freeUnits'));
+
+    }
+
+    public function actionLk($id=null)
     {
 
         $model = new Unit();
@@ -38,7 +48,7 @@ class HomeController extends BaseController
         $year = date('Y', time());
         $calendar = \Yii::$app->calendar->generateCalendar($month, $year, $id);
 
-        return $this->render('index', compact('list', 'model', 'calendar', 'id'));
+        return $this->render('lk', compact('list', 'model', 'calendar', 'id'));
 
     }
 

@@ -45,11 +45,15 @@ class UnitController extends BaseController
             $model->load(\Yii::$app->request->post());
             $session = \Yii::$app->session;
             $model->unit_id = $session['currentUnit'];
-            $model->addDate();
-            $model->save();
-            $data = Register::find()->where(['unit_id'=>$session['currentUnit']])->all();
+            //$model->addDate();
+            if ($model->save()){
+                \Yii::$app->session->setFlash('success', 'Запись добавлена');
+            } else {
+                $errMsg = $model->getErrors();
+                \Yii::$app->session->setFlash('warning', 'Запись не добавлена - '.$errMsg['start_time'][0]);
+            }
 
-            return $this->render('view', compact('data', 'model' , 'unit', 'calendar'));
+            return $this->redirect(\Yii::$app->request->referrer);
         }
     }
 
@@ -60,7 +64,8 @@ class UnitController extends BaseController
         $date ? $session['date'] = $date : false;
         $model->id = $session['currentUnit'];
         $model->date = $session['date'];
-        $model->unitName = $unit_name;
+        $unit_name ? $session['unit_name'] = $unit_name : false;
+        $model->unitName = $session['unit_name'];
 
         if (\Yii::$app->request->isPost) {
             $model->load(\Yii::$app->request->post());
@@ -90,7 +95,6 @@ class UnitController extends BaseController
 
 
     }
-
 
 
 }

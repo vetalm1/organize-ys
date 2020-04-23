@@ -39,5 +39,7 @@ use yii\widgets\ActiveForm;
 
         <?php ActiveForm::end(); ?>
 
+        <a href="/" class="bold">На главную</a>
+
     </div>
 </div>

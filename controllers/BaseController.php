@@ -19,7 +19,7 @@ class BaseController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['login'],
+                        'actions' => ['login','home-index'],
                         'roles' => ['?'],
                     ],
                     [

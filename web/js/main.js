@@ -6,17 +6,21 @@ $(function(){
 
 
 
-$('.add-to-base').on('click', function () {
+$('.add-to-base').on('click', function ()
+ {
     let key = $(this).data('key');
+    let date = $('.date').text();
     let startTime = '.input-start'+key;
     let endTime = '.input-end'+key;
     let description = '.input-desc'+key;
     description = $(description).val();
-    startTime = $('.date').text()+' '+$(startTime).val()+':00';
-    endTime = $('.date').text()+' '+$(endTime).val()+':00';
+    //startTime = $('.date').text()+' '+$(startTime).val()+':00';
+    //endTime = $('.date').text()+' '+$(endTime).val()+':00';
+    startTime = $(startTime).val();
+    endTime = $(endTime).val();
 
-   // alert (key+'------'+startTime+'==='+endTime+'   '+description);
     let arr = {
+        'date': date,
         'start_time': startTime,
         'end_time': endTime,
         'description': description
@@ -35,6 +39,6 @@ $('.add-to-base').on('click', function () {
         }
     });
     return false;
-});
+ });
 
 //$(id_button).attr('style', 'display:none')

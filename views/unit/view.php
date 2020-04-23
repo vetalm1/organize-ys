@@ -7,6 +7,7 @@ use yii\helpers\Html;
 $this->params['breadcrumbs'][] = $unit['name'];
 ?>
 
+<?=\app\widgets\Alert::widget() ?>
 
 <h2><?=$unit['name']; ?></h2>
 
@@ -14,7 +15,8 @@ $this->params['breadcrumbs'][] = $unit['name'];
        class="btn <?php if($unit->busy==1) {echo 'btn-default';} else {echo 'btn-success';} ?>">Сейчас свободно</a>
 <a href="<?= Url::to(['unit/view', 'id' => $unit->id, 'busy'=>1]) ?>"
        class="btn <?php if($unit->busy==1) {echo 'btn-warning';} else {echo 'btn-default';} ?>">Сейчас Занято</a>
-<span style="padding: 0 0 0 70px;"></span>  <!--Убереги меня верстальщик говнокода-->
+
+<span style="padding: 0 0 0 70px;"></span>  <!-- +++Убереги меня верстальщик от говнокода-->
 <a href="#" class="btn btn-primary">Освободится через - </a> <input type="text" style="width: 30px;"> <span>мин.</span>
 <br><br>
 
@@ -22,7 +24,7 @@ $this->params['breadcrumbs'][] = $unit['name'];
 <div class="row ">
 
    <div class="col-md-2">
-        <br>
+      <br>
       <?php $form = ActiveForm::begin([
             'method' => 'post',
             'action' => ['unit/add-day'],
@@ -36,12 +38,12 @@ $this->params['breadcrumbs'][] = $unit['name'];
                                                           ->label(false, ['style'=>'display:none']) ?>
             </div>
             <div class="col-md-6">
-            <?=$form->field($model, 'end_time')->textInput(['value' => '09:00'])
+            <?=$form->field($model, 'end_time')->textInput(['value' => '10:00'])
                                                         ->label(false, ['style'=>'display:none']) ?>
             </div>
         </div>
 
-        <?=$form->field($model, 'description')->textInput(['placeholder' => 'примечание'])
+        <?=$form->field($model, 'description')->textarea(['rows'=>2, 'placeholder' => 'примечание'])
                                                        ->label(false, ['style'=>'display:none']) ?>
 
         <?= Html::submitButton('Добавить запись', ['class' => 'btn btn-primary center-block',]) ?>
@@ -110,6 +112,7 @@ $this->params['breadcrumbs'][] = $unit['name'];
         <?php endforeach; ?>
     </div>
 </div>
+
 
 
 <?php /* @var $this \yii\web\View */ echo ''; ?>
